@@ -1,5 +1,7 @@
 "use strict";
 
+const { response } = require("express");
+
 class UserStorage {
     static #users = {
         id: ["woorimIT", "나개발", "김팀장"],
@@ -29,6 +31,14 @@ class UserStorage {
         }, {});
 
         return userInfo;
+    }
+
+    static save(userInfo) {
+        const users = this.#users;
+        users.id.push(userInfo.id); 
+        users.id.psword(userInfo.psword); 
+        users.id.name(userInfo.name); 
+        return { success: true };
     }
 }
 
